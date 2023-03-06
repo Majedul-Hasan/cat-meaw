@@ -13,6 +13,7 @@ import { fetchCats } from './features/cats/catsSlice';
 
 
 const App = ()=> {
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchCats())

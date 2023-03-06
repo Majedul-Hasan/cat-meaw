@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addACat, editACat, deleteACat, getAllCats, getACat } from "./catsApi";
+import { addACat, editACat, deleteACat, getAllCats, getACat, patchClickCount } from "./catsApi";
 
 const initialState = {
     cats : [],
@@ -21,8 +21,8 @@ const fetchCats = createAsyncThunk('cats/fetchCats', async () =>{
     const cats = await getAllCats()
     return cats
 }) 
-const fetchCat = createAsyncThunk('cats/fetchCat', async () =>{
-    const cat = await getACat()
+const fetchCat = createAsyncThunk('cats/fetchCat', async (id) =>{
+    const cat = await getACat(id)
     return cat
 }) 
 const createCat = createAsyncThunk('cats/createCat', async (data) =>{
@@ -31,6 +31,10 @@ const createCat = createAsyncThunk('cats/createCat', async (data) =>{
 }) 
 const updateCat = createAsyncThunk('cats/updateCat', async ({id,data}) =>{
     const cat = await editACat(id, data)
+    return cat
+}) 
+const patchClick = createAsyncThunk('cats/patchClicks', async ({id,click}) =>{
+    const cat = await patchClickCount(id, click)
     return cat
 }) 
 const removeACat = createAsyncThunk('cats/removeCat', async (id) =>{
@@ -49,6 +53,9 @@ const catSlice = createSlice({
         },
         editInactive:(state, action)=>{
             state.editing = {}
+        },    
+        updateClick:(state, action)=>{
+            state.cats.find(c=>c.id === action.payload && c.click++)
         },    
     },
 
@@ -98,6 +105,7 @@ const catSlice = createSlice({
                 state.isLoading = false;
                 state.error = action.error.message
             })
+
             .addCase(updateCat.pending, (state, action)=>{
                 state.isError = false;
                 state.isLoading = true;
@@ -115,6 +123,24 @@ const catSlice = createSlice({
                 state.isLoading = false;
                 state.error = action.error.message
             })
+            
+
+            .addCase(patchClick.pending, (state, action)=>{
+                state.isError = false;
+                state.isLoading = true;
+            })
+            .addCase(patchClick.fulfilled, (state, action)=>{
+                state.isError = false;
+                state.isLoading = false;
+                state.cat.click +=1;
+                
+            })
+            .addCase(patchClick.rejected, (state, action)=>{
+                state.isError = true;
+                state.isLoading = false;
+                state.error = action.error.message
+            })
+
             .addCase(removeACat.pending, (state, action)=>{
                 state.isError = false;
                 state.isLoading = true;
@@ -122,7 +148,7 @@ const catSlice = createSlice({
             .addCase(removeACat.fulfilled, (state, action)=>{
                 state.isError = false;
                 state.isLoading = false;
-                state.cats = state.cats.filter(cat=>cat.id !== action.payload.id)
+                state.cats = state.cats.filter(cat=>cat.id !== action.payload)
 
                 
             })
@@ -139,6 +165,6 @@ const catSlice = createSlice({
 })
 
 export default catSlice.reducer
-export const {editActive, editInactive} = catSlice.actions
+export const {editActive, editInactive, updateClick} = catSlice.actions
 
-export {fetchCats, fetchCat, createCat, removeACat, updateCat}
+export {fetchCats, fetchCat, createCat, removeACat, updateCat, patchClick}
