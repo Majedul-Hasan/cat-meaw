@@ -8,7 +8,7 @@ const LeftComponent = () => {
 
   return (
    <>
-   <div className=' w-2/12 '>
+   <div className=' w-3/12 '>
     {
     cats.map(cat =><CatsNameLeft cat = {cat} />)
     }

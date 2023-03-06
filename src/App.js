@@ -25,8 +25,10 @@ const App = ()=> {
       </header>
       <ComponentTop>
         <LeftComponent />
-        <CenterComponent />
-        <RightComponent />
+        <div className='flex'>
+          <CenterComponent />
+          <RightComponent />
+        </div>       
       </ComponentTop>
       <ComponentBottom>
         <ContainerCats />
