@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 
 import './App.css';
 import CenterComponent from './components/CenterComponent';
@@ -8,22 +7,15 @@ import ComponentTop from './components/ComponentTop';
 import ContainerCats from './components/ContainerCats';
 import LeftComponent from './components/CatsNameLeft';
 import RightComponent from './components/RightComponent';
-import { fetchCats } from './features/cats/catsSlice';
+import HeaderComponent from './components/HeaderComponent';
 
 
 
 const App = ()=> {
 
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(fetchCats())
-  }, [dispatch])  
-  dispatch(fetchCats())
   return (
-   < >
-      <header className='bg-sky-200 py-3 px-16'>
-        <h1 className='capitalize font-bold text-2xl ml-16 text-blue-600'>Cat clicker app</h1>      
-      </header>
+   < >    
+   <HeaderComponent /> 
       <ComponentTop>
         <LeftComponent />
         <div className='flex flex-1'>
@@ -37,5 +29,11 @@ const App = ()=> {
    </>
   )
 }
+
+
+
+
+
+
 
 export default App;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {  useDispatch } from 'react-redux'
-import { createCat, editInactive } from '../features/cats/catsSlice'
+import { createCat } from '../features/cats/catsSlice'
 
 
 const FormComponent = () => {
