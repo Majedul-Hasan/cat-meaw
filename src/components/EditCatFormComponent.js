@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {  useDispatch } from 'react-redux'
-import { updateCat, fetchCat } from '../features/cats/catsSlice'
+import { updateCat, editInactive } from '../features/cats/catsSlice'
 
 
 const EditCatFormComponent = ({editing}) => {
@@ -75,7 +75,7 @@ const EditCatFormComponent = ({editing}) => {
     };
     //  console.log(data)
     dispatch(updateCat({id: editing.id,data}));
-    dispatch(fetchCat(editing.id));
+    dispatch(editInactive());
 
 
   }

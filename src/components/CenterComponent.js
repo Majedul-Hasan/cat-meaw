@@ -13,7 +13,6 @@ const CenterComponent = () => {
 
  const clickHandler = () =>{
   dispatch(patchClick({id, click}))
-  // dispatch(fetchCats())
   dispatch(updateClick(id))
  }
 

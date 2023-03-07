@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {  useDispatch } from 'react-redux'
-import { createCat } from '../features/cats/catsSlice'
+import { createCat, editInactive } from '../features/cats/catsSlice'
 
 
 const FormComponent = () => {
@@ -73,7 +73,15 @@ const FormComponent = () => {
     };
     //  console.log(data)
     dispatch(createCat(data));
+    // dispatch(editInactive())
+    clearForm();
 
+  }
+  const clearForm = () => {
+    setName('');
+    setImgUrl('');
+    setClick('');
+    setDescription('')
   }
 
   return (
