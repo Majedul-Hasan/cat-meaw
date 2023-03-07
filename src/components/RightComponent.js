@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { editActive, editInactive } from '../features/cats/catsSlice'
-import FormComponent from './FormComponent'
+import AddCatFormComponent from './AddFormComponent'
+import EditCatFormComponent from './EditCatFormComponent'
+
+
 
 
 
 const RightComponent = () => {
   const [newCat, setNewCat] = useState(false)
-  const {cat} = useSelector(state => state.cats)|| {}
+  const {cat, editing} = useSelector(state => state.cats)|| {}
 
   const dispatch = useDispatch()
 
@@ -40,7 +43,10 @@ const addNewCatHandler = ()=>{
         </button>
 
       </div>
-      <FormComponent newCat={newCat} />
+      {
+        editing?.name !== undefined ? <EditCatFormComponent editing = {editing} /> : <AddCatFormComponent newCat={newCat} />
+      }
+      
    
 
    </div>

@@ -109,14 +109,15 @@ const catSlice = createSlice({
                 state.isError = false;
                 state.isLoading = false;
                 const indexToUpdate = state.cats.findIndex(cat=>cat.id === action.payload.id);
-
                 state.cats[indexToUpdate] = action.payload;
+                state.cat = action.payload;
                 
             })
             .addCase(updateCat.rejected, (state, action)=>{
                 state.isError = true;
                 state.isLoading = false;
                 state.error = action.error.message
+                
             })
             
 

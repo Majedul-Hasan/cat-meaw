@@ -1,4 +1,5 @@
 // import React from 'react'
+
 import { useDispatch, useSelector } from 'react-redux'
 
 import { patchClick,  editActive, updateClick } from '../features/cats/catsSlice';
@@ -15,6 +16,10 @@ const CenterComponent = () => {
   // dispatch(fetchCats())
   dispatch(updateClick(id))
  }
+
+
+
+
   return (
 
    <div className='mx-3 p-0 border-4 border-gray-400 w-1/2'>

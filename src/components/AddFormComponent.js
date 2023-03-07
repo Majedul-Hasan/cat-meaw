@@ -16,6 +16,7 @@ const FormComponent = () => {
     e.preventDefault()
     const data = {      
       name,
+      click: parseInt(click),
       image : imgUrl,
       desc: description,
       skills: {
