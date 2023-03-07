@@ -3,12 +3,7 @@ import { addACat, editACat, deleteACat, getAllCats, getACat, patchClickCount } f
 
 const initialState = {
     cats : [],
-    cat : {
-        id: 1,
-        name: 'tabby',
-        image: 'https://plus.unsplash.com/premium_photo-1661508614319-b5e40d1143bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-        click: 1
-      },
+    cat : {},
     isLoading: false,
     isError: false,
     error: '',

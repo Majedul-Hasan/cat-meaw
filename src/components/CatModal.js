@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchCat } from '../features/cats/catsSlice';
+import { fetchCat, patchClick, updateClick } from '../features/cats/catsSlice';
 
 const CatModal = ({cat}) => {
     const { id, name,  image, click} = cat || {};
@@ -10,7 +10,11 @@ const CatModal = ({cat}) => {
     const clickHandler = () =>{
         dispatch(fetchCat(id))
         // dispatch(fetchCats())
-      }
+    
+        dispatch(patchClick({id, click}))
+        // dispatch(fetchCats())
+        dispatch(updateClick(id))
+       }
   return (
     <div className= 'card md:w-80 sm:w-11/12 bg-base-100 shadow-xl mx-auto rounded-xl '>
         <figure className='mt-3  w-full h-96 relative' onClick={clickHandler} >

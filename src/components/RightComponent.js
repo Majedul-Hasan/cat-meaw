@@ -1,23 +1,47 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { editActive, editInactive } from '../features/cats/catsSlice'
+import FormComponent from './FormComponent'
+
+
 
 const RightComponent = () => {
-  return (
-    <div className='mx-3'>
-    <div>
-      <h2 className='capitalize'> tabby</h2>
-      <p>No. of times clicked : 5</p>
-    </div>
-    <div className='img-container'>
-      <img src='https://plus.unsplash.com/premium_photo-1661508614319-b5e40d1143bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' alt='tabby'/>
+  const [newCat, setNewCat] = useState(false)
+  const {cat} = useSelector(state => state.cats)|| {}
 
-    </div>
-    <div>
-      <p>tabby tabby tabby tabby</p>
-      <p>grown up baby</p>
-      <Link to={`/`}> Card Link</Link>
-      
-    </div>
+  const dispatch = useDispatch()
+
+
+  
+const editActiveHandler = ()=>{
+  setNewCat(false)
+  dispatch(editActive(cat))
+}
+const addNewCatHandler = ()=>{
+  setNewCat(false)
+  dispatch(editInactive(cat))
+}
+
+
+
+  return (
+    <div className='mx-3 p-0  w-1/2 bg-slate-300'>
+      <div className='flex gap-3 py-5 justify-center'>
+        <button className='bg-sky-600 text-yellow-50 py-2 px-5 text-2xl font-semibold capitalize rounded-lg border-0 hover:bg-sky-300 hover:text-sky-700'
+         onClick={addNewCatHandler}
+         >
+          add a new cat
+        </button>
+        <button className='bg-sky-600 text-yellow-50 py-2 px-5 text-2xl font-semibold capitalize rounded-lg border-0 hover:bg-sky-300 hover:text-sky-700' 
+        onClick={editActiveHandler}
+        >
+          <></>
+          edit this cat
+        </button>
+
+      </div>
+      <FormComponent newCat={newCat} />
+   
 
    </div>
   )

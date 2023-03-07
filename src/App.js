@@ -26,7 +26,7 @@ const App = ()=> {
       </header>
       <ComponentTop>
         <LeftComponent />
-        <div className='flex'>
+        <div className='flex flex-1'>
           <CenterComponent />
           <RightComponent />
         </div>       
