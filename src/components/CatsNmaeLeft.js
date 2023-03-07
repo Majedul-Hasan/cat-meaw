@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { fetchCat, fetchCats } from '../features/cats/catsSlice'
+import { fetchCat} from '../features/cats/catsSlice'
 
 const CatsNameLeft = ({cat}) => {
 
@@ -9,7 +9,7 @@ const CatsNameLeft = ({cat}) => {
     const {name, click: age, id } = cat
     const clickHandler = () =>{
       dispatch(fetchCat(id))
-      dispatch(fetchCats())
+      // dispatch(fetchCats())
     }
 
   return (
