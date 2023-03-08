@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import { useSortSkills2019, useSortProgress } from '../utils/allfunctions';
 import SkillComponent from './SkillComponent';
 
@@ -41,6 +41,19 @@ const top3Progress =() =>{
 
 
 // }
+const decelerating =(start)=> {
+  const sortedSkill = [...cat.skills]
+ const deSkills = sortedSkill.filter(s => s.skill2019 >  s.skill2024);
+ deSkills.sort((a,b) => (a.skill2024 - a.skill2019)/a.skill2019 - (b.skill2024 - b.skill2019 )/b.skill2019)
+ console.log(deSkills);
+  
+  setCatsSkills(()=>deSkills.length > 3 ? deSkills.slice(0, 3) : deSkills)
+
+
+ 
+
+  
+}
 
 
 
@@ -74,7 +87,7 @@ const top3Progress =() =>{
      <button className='bg-blue-500 text-blue-200 font-semibold px-4 py-2 text-xl ' onClick={()=>top3Progress(0,3)}>Top 3 accelerating</button> 
      <button className='bg-green-500 text-green-200 font-semibold px-4 py-2 text-xl ' onClick={()=>bottom3Progress(-3)}>bottom 3 accelerating</button> 
 
-     <button className='bg-blue-500 text-blue-200 font-semibold px-4 py-2 text-xl ' >top 3</button> 
+     <button className='bg-blue-500 text-blue-200 font-semibold px-4 py-2 text-xl ' onClick={decelerating}>decelerating</button> 
      <button className='bg-green-500 text-blue-200 font-semibold px-4 py-2 text-xl '>bottom 3</button> 
   
     
